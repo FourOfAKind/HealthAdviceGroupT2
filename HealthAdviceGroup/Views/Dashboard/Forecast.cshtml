@@ -1,0 +1,26 @@
+﻿@{
+    ViewData["Title"] = "Forecast";
+}
+
+<div class="container">
+    <div class="left" style="float: left;">
+        <!-- Left side of the screen, displays information relevant to current weather -->
+        <h3 class="location-text">Loading</h3>
+        <img class="icon-img" id="weather-img" alt="placeholder image" src="~/assets/static/placeholder.png"/> 
+        <h3 class="d-inline-block float-md-right condition-text">Loading</h3>
+        <h4 class="temperature-text">Loading</h4>
+        <h4 class="lastupdated-text">Loading</h4>
+    </div>
+
+    <!-- Right side of the screen, displays information relevant to other conditions / entire day -->
+    <div class="right" style="float: right;">
+        <h3><a href="#">Search for another location</a></h3>
+        <h4 class="humidity-text">Loading</h4>
+        <h4 class="airpressure-text">Loading</h4>
+        <h4 class="sunrise-text">Loading</h4>
+        <h4 class="sunset-text">Loading</h4>
+    </div>
+</div>
+
+<!-- Link to script which calculates temperature and updates text -->
+<script src="~/js/forecast.js"></script>

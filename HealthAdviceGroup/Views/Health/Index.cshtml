@@ -1,0 +1,47 @@
+﻿@model IEnumerable<HealthAdviceGroup.Models.Health>
+
+@{
+    ViewData["Title"] = "Index";
+    var item = Model.FirstOrDefault();
+}
+
+<h1>Index</h1>
+
+<div class="container">
+    <div class="row">
+        <!-- Displays the steps as a card in a column of a grid -->
+        <div class="col-md-6 col-lg-4 text-center">
+            <div class="card" style="height: 15rem; width: 20rem;">
+                <h2 class="card-title">Steps</h2>
+                <!-- Displays number of steps if entry has been created, otherwise displays 0 -->
+                <h3 class="card-body">@(item?.Steps ?? 0) / 6000 steps</h3>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4 text-center">
+            <a></a>
+            <div class="card" style="height: 15rem; width: 20rem;">
+                <h2 class="card-title">Calories</h2>
+                <!-- Displays number of calories if entry has been created, otherwise displays 0 -->
+                <h3 class="card-body">@(item?.Calories ?? 0) / 2000 calories</h3>
+            </div>
+        </div>
+        <div class="col-md-6 col-lg-4 text-center">
+            <div class="card" style="height: 15rem; width: 20rem;">
+                <h2 class="card-title">Water</h2>
+                <!-- Displays number of cups of water if entry has been created, otherwise displays 0 -->
+                <h3 class="card-body">@(item?.Water ?? 0) / 8 cups</h3>
+            </div>
+        </div>
+    </div>
+</div>
+
+    @{    
+        // If there is no entry for today, display a link to create one, otherwise display a link to edit the entry
+        if(item == null) {
+            <a asp-action="Create" class="display-6" style="float: left;">Log today's entry</a>
+        } else {
+            <a asp-action="Edit" asp-route-id=@item.Id class="display-6">Edit todays entry</a>
+        }
+        <a asp-controller="Health" asp-action="MyDiary" class="display-6" style="float: right;">View previous entries</a>
+    }
+    

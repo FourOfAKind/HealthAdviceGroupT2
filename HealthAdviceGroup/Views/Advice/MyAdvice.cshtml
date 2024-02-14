@@ -1,0 +1,43 @@
+﻿@using HealthAdviceGroup.Data
+@using Microsoft.EntityFrameworkCore
+@using System.Security.Claims
+@model IEnumerable<HealthAdviceGroup.Models.Advice>
+@inject Microsoft.AspNetCore.Hosting.IWebHostEnvironment webHostEnvironment;
+@inject ApplicationDbContext applicationDbContext;
+
+@{
+    ViewData["Title"] = "My Advice";
+}
+
+<h1>Saved Advice</h1>
+<a asp-action="Index" asp-controller="Advice">All Advice</a>
+
+<div class="container-fluid courses">
+    <div class="row">
+        @foreach (var item in Model)
+        {
+            <!-- Determine the path to the uploaded image, using a spaceholder if it is empty-->
+            string imagePath = string.IsNullOrEmpty(item.ImagePath) || System.IO.File.Exists(webHostEnvironment.WebRootPath + "/assets/uploaded" + item.ImagePath) ? Url.Content("~/assets/static/placeholder.png") : Url.Content("~/assets/uploaded/" + item.ImagePath);
+            <!-- Extract adviceId and userId for saving or viewing advice -->
+            int adviceId = item.Id;
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            <div class="col-lg-3 col-md-5 col-sm-12 spacing">
+                <div class="card" style="height: 15rem;">
+                    <!-- Display the advice image and title -->
+                    <img class="card-img-top" src=@imagePath style="width: 100%; height: 10rem;" />
+                    <h3 class="card-title text-center">@item.Title</h3>
+                        <div class="d-flex flex-row justify-content-evenly">
+                            <!-- Details option to view more -->
+                            <a asp-action="Details" asp-route-id="@item.Id">Details</a>
+                            <!-- Action to unsave advice -->
+                            <form asp-action="DeleteSave" asp-controller="Advice" method="post">
+                            <input type="hidden" name="id" value="@item.Id" />
+                            <button type="submit" class="btn-danger">Unsave</button>
+                            </form>
+                        </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>

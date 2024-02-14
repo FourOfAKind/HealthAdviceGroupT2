@@ -1,0 +1,132 @@
+﻿html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+a {
+  text-decoration: none;
+}
+
+.spacing {
+    margin: 15px;
+}
+
+.icon-img {
+    border-radius: 50%;
+    height: 75px;
+    width: 75px;
+}
+
+.location-text::before {
+    content: "📍Location: "
+}
+
+.temperature-text::before {
+    content: "Temperature: "
+}
+
+.feelslike-text::before {
+    content: "Feels like: "
+}
+
+.lastupdated-text::before {
+    content: "Last updated: "
+}
+
+.humidity-text::before {
+    content: "Humidity: "
+}
+
+.airpressure-text::before {
+    content: "Air pressure: "
+}
+
+.sunrise-text::before {
+    content: "Sunrise time: "
+}
+
+.sunset-text::before {
+    content: "Sunset time: "
+}
+
+.aqi-text::before {
+    content: "Overall AQI: "
+}
+
+.co-text:before {
+    content: "CO Concentration: ";
+}
+
+.no2-text:before {
+    content: "NO2 Concentration: ";
+}
+
+.o3-text:before {
+    content: "O3 Concentration: ";
+}
+
+.pm2_5-text:before {
+    content: "PM2.5 Concentration: ";
+}
+
+.pm10-text:before {
+    content: "PM10 Concentration: ";
+}
+
+.so4-text:before {
+    content: "SO4 Concentration: ";
+}
+
+.co-aqi:before {
+    content: "CO Concentration: ";
+}
+
+.no2-aqi:before {
+    content: "NO2 Concentration: ";
+}
+
+.o3-aqi:before {
+    content: "O3 Concentration: ";
+}
+
+.pm2_5-aqi:before {
+    content: "PM2.5 Concentration: ";
+}
+
+.pm10-aqi:before {
+    content: "PM10 Concentration: ";
+}
+
+.so4-aqi:before {
+    content: "SO4 Concentration: ";
+}
+
+.temperature-text::after, .feelslike-text::after {
+    content: "℃"
+}
+
+.airpressure-text::after {
+    content: "hPa"
+}
+
+.humidity-text::after {
+    content: "%"
+}

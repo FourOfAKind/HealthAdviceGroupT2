@@ -1,0 +1,36 @@
+﻿@model IEnumerable<HealthAdviceGroup.Models.Health>
+
+@{
+    ViewData["Title"] = "Diary";
+}
+
+<h1>My Diary</h1>
+
+<table class="table">
+    <thead>
+        <!-- Table headers -->
+        <tr>
+            <th>Date</th>
+            <th>Steps</th>
+            <th>Calories</th>
+            <th>Cups of Water</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        // Create a row for every health diary entry, which maps the date, steps, calories, and water -->
+        {
+            <tr>
+                <td>@item.Date</td>
+                <td>@item.Steps</td>
+                <td>@item.Calories</td>
+                <td>@item.Water</td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

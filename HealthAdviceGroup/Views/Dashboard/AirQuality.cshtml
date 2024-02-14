@@ -1,0 +1,40 @@
+﻿@{
+    ViewData["Title"] = "Air Quality";
+}
+
+<div class="container">
+    <div style="float: left;">
+        <h4 class="display-4">Pollutants (μg/m3)</h4>
+        <!-- Location of air quality data (not implemented yet) -->
+        <h3 class="location-text">Placeholder</h3>
+        <!-- Amount of pollutants in air -->
+        <h4 class="co-text">Loading</h4>
+        <h4 class="no2-text">Loading</h4>
+        <h4 class="o3-text">Loading</h4>
+        <h4 class="pm2_5-text">Loading</h4>
+        <h4 class="pm10-text">Loading</h4>
+        <h4 class="so4-text">Loading</h4>
+    </div>
+    <div style="float: right;">
+        <h4 class="display-4">Air Quality Index</h4>
+        <!-- AQI for each polutant -->
+        <h3 class="aqi-text" >Loading</h3>
+        <h4 class="co-aqi">Loading</h4>
+        <h4 class="no2-aqi">Loading</h4>
+        <h4 class="o3-aqi">Loading</h4>
+        <h4 class="pm2_5-aqi">Loading</h4>
+        <h4 class="pm10-aqi">Loading</h4>
+        <h4 class="so4-aqi">Loading</h4>
+    </div>
+</div>
+
+<!-- Placeholder chart for pollutant concentration / history -->
+<div class="container">
+    <div style="chart">
+        <img src="https://sta.laits.utexas.edu/wp-content/uploads/files/charts.png" style="width: 75%;" alt="placeholder graph" />
+    </div>
+</div>
+
+
+<!-- Link to script which gets location and calculates pollutant AQIs -->
+<script src="~/js/airquality.js"></script>

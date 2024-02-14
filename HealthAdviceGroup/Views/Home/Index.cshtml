@@ -1,0 +1,104 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+<div class="text-center">
+    @{ 
+        // This is displayed to the user if they arent logged in
+        if(!User.Identity.IsAuthenticated)
+        {
+            <h1 class="display-6">Please <a class="" id="login" asp-area="Identity" asp-page="/Account/Login">log in</a> to access our advice and forecasts.</h1>
+        } 
+        else // if user is logged in, this is displayed
+        {
+            <h1 class="display-6">Welcome to Health Advice Group</h1>
+            <p class="lead">Please select a service from the menu below..</p>
+        }
+        if (User.IsInRole("User"))
+        {
+            <!--User dashboard / features-->
+            <div class="container">
+                <div class="row">
+                    <!--Weather forecast option-->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card" style="width: 18rem; margin: 1rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">Weather Forecast</h5>
+                                <p class="card-text">Shows the weather at the user's location</p>
+                                <a asp-controller="Dashboard" asp-action="Forecast" class="btn btn-primary">Go</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Air quality option-->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card" style="width: 18rem; margin: 1rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">Air Quality</h5>
+                                <p class="card-text">Shows the air quality at the user's location</p>
+                                <a asp-controller="Dashboard" asp-action="AirQuality" class="btn btn-primary">Go</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Health tracker option-->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card" style="width: 18rem; margin: 1rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">Health Tracker</h5>
+                                <p class="card-text">Diary for tracking calories, water, and steps.</p>
+                                <a asp-controller="Health" asp-action="Index" class="btn btn-primary">Go</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!--View advice option-->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card" style="width: 18rem; margin: 1rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">View Advice</h5>
+                                <p class="card-text">Shows advice given by Health Advice Group.</p>
+                                <a asp-controller="Advice" asp-action="Index" class="btn btn-primary">Go</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+        if (User.IsInRole("Management"))
+        {
+            <!--Management dashboard / features-->
+            <div class="container">
+                <div class="row">
+                    <!--Add advice option-->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card" style="width: 18rem; margin: 1rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">Add Advice</h5>
+                                <p class="card-text">Create new advice articles for users to see.</p>
+                                <a asp-controller="Advice" asp-action="Create" class="btn btn-primary">Go</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!--Health tracker option-->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card" style="width: 18rem; margin: 1rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">Manage Advice</h5>
+                                <p class="card-text">View and manage existing advice created by management.</p>
+                                <a asp-controller="Advice" asp-action="Index" class="btn btn-primary">Go</a>
+                            </div>
+                        </div>
+                    </div>
+                    <!--View advice option-->
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card" style="width: 18rem; margin: 1rem;">
+                            <div class="card-body">
+                                <h5 class="card-title">Admin Dashboard</h5>
+                                <p class="card-text">View advice impressions and site metrics.</p>
+                                <a onclick="alert('This feature has not been implemented yet. ');" class="btn btn-primary">Go</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    }
+</div>

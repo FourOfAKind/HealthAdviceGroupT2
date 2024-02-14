@@ -1,0 +1,38 @@
+﻿﻿@using Microsoft.AspNetCore.Identity
+@using HealthAdviceGroup.Areas.Identity.Data
+
+@inject SignInManager<ApplicationUser> SignInManager
+@inject UserManager<ApplicationUser> UserManager
+
+@{
+    // Retrieve the current user
+    var user = await UserManager.GetUserAsync(Context.User);
+}
+
+<ul class="navbar-nav">
+    <!-- Check if user is signed in -->
+    @if (SignInManager.IsSignedIn(User))
+    {
+        <!-- Display user's name and link to manage account -->
+        <li class="nav-item">
+            <a id="manage" class="nav-link" asp-area="Identity" asp-page="/Account/Manage/Index" title="Manage">Hello @user.FirstName @user.LastName </a>
+        </li>
+        <!-- Form for logout -->
+        <li class="nav-item">
+            <form id="logoutForm" class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Action("Index", "Home", new { area = "" })">
+                <button id="logout" type="submit" class="nav-link btn btn-link">Logout</button>
+            </form>
+        </li>
+    }
+    else
+    {
+        <!-- Link to register page -->
+        <li class="nav-item">
+            <a class="nav-link" id="register" asp-area="Identity" asp-page="/Account/Register">Register</a>
+        </li>
+        <!-- Link to login page -->
+        <li class="nav-item">
+            <a class="nav-link" id="login" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        </li>
+    }
+</ul>

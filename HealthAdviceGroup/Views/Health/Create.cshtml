@@ -1,0 +1,58 @@
+﻿@model HealthAdviceGroup.Models.Health
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Health</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <!-- Hidden field to store the user's id to identify who tracked it -->
+                <input asp-for="UserId" type="hidden" value="@ViewBag.UserId" />
+            </div>
+            <div class="form-group">
+                <!-- Hidden field to store the date to determine whether it should be showed on index or diary -->
+                <input asp-for="Date" type="hidden" value="@ViewBag.Date" />
+            </div>
+            <!-- Display name, validation, and input for steps with default value set to 0 -->
+            <div class="form-group">
+                <label asp-for="Steps" class="control-label"></label>
+                <input asp-for="Steps" class="form-control" value=0 />
+                <span asp-validation-for="Steps" class="text-danger"></span>
+            </div>
+            <!-- Display name, validation, and input for calories with default value set to 0 -->
+            <div class="form-group">
+                <label asp-for="Calories" class="control-label"></label>
+                <input asp-for="Calories" class="form-control" value=0 />
+                <span asp-validation-for="Calories" class="text-danger"></span>
+            </div>
+            <!-- Display name, validation, and input for steps with default value set to 0 -->
+            <div class="form-group">
+                <label asp-for="Water" class="control-label"></label>
+                <input asp-for="Water" class="form-control" value=0 />
+                <span asp-validation-for="Water" class="text-danger"></span>
+            </div>
+            <!-- Submit button to create the health tracker entry -->
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <!-- Link to navigate back to the list page -->
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

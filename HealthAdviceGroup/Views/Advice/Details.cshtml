@@ -1,0 +1,50 @@
+﻿@model HealthAdviceGroup.Models.Advice
+@inject Microsoft.AspNetCore.Hosting.IWebHostEnvironment webHostEnvironment;
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Advice</h4>
+    <hr />
+    <dl class="row">
+        <!-- Display the image path property's name -->
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.ImagePath)
+        </dt>
+        <dd class="col-sm-10">
+            @{
+                // Generate the image path, using a placeholder if the file doesn't exist
+                string imagePath = string.IsNullOrEmpty(Model.ImagePath) || System.IO.File.Exists(webHostEnvironment.WebRootPath + "/assets/uploaded" + Model.ImagePath) ? Url.Content("~/assets/static/placeholder.png") : Url.Content("~/assets/uploaded/" + Model.ImagePath);
+                // Display the image
+                <img style="width: 30vh; height: 20vh;" src="@imagePath" />
+            }
+        </dd>
+
+        <!-- Display the title property's name -->
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Title)
+        </dt>
+        <!-- Display the title property -->
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Title)
+        </dd>
+
+        <!-- Display the description property's name -->
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Description)
+        </dt>
+        <!-- Display the description property -->
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Description)
+        </dd>
+    </dl>
+</div>
+
+<!-- Link to navigate back to the advice list -->
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
