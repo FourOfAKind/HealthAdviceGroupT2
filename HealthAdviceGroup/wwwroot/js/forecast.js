@@ -31,7 +31,7 @@ function updateWeatherHUD(data) {
 
     // Update weather HUD elements with corresponding data
     updateTextContent(".location-text", parsedData.name);
-    updateTextContent(".icon-img", `http://openweathermap.org/img/w/${parsedData.weather[0].icon}.png`);
+    document.querySelector(".icon-img").src = `http://openweathermap.org/img/w/${parsedData.weather[0].icon}.png`
     updateTextContent(".condition-text", parsedData.weather[0].main);
     updateTextContent(".temperature-text", toCelsius(parsedData.main.temp));
     updateTextContent(".lastupdated-text", toTime(parsedData.dt));
