@@ -81,12 +81,6 @@ namespace HealthAdviceGroup.Controllers
             return View();
         }
 
-        // GET: Dashboard/Privacy
-        public IActionResult Privacy()
-        {
-            return View();
-        }
-
         // GET: Dashboard/Error
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()

@@ -9,6 +9,7 @@ using HealthAdviceGroup.Data;
 using HealthAdviceGroup.Models;
 using System.Security.Claims;
 using Microsoft.AspNetCore.Mvc.ModelBinding;
+using Microsoft.AspNetCore.Authorization;
 
 namespace HealthAdviceGroup.Controllers
 {
@@ -22,6 +23,7 @@ namespace HealthAdviceGroup.Controllers
         }
 
         // GET: Health/Index
+        [Authorize]
         public async Task<IActionResult> Index()
         {
             // Retrieve today's health data for the logged-in user
@@ -36,6 +38,7 @@ namespace HealthAdviceGroup.Controllers
             return View(dailyEntry);
         }
 
+        [Authorize]
         // GET: Health/MyDiary
         public async Task<IActionResult> MyDiary()
         {
@@ -49,6 +52,7 @@ namespace HealthAdviceGroup.Controllers
             return View(entries);
         }
 
+        [Authorize]
         // GET: Health/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -71,6 +75,7 @@ namespace HealthAdviceGroup.Controllers
             return View(health);
         }
 
+        [Authorize]
         // GET: Health/Create
         public IActionResult Create()
         {
@@ -81,6 +86,7 @@ namespace HealthAdviceGroup.Controllers
         }
 
         // POST: Health/Create
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Health health)
@@ -100,6 +106,7 @@ namespace HealthAdviceGroup.Controllers
         }
 
         // GET: Health/Edit/5
+        [Authorize]
         public async Task<IActionResult> Edit(int? id)
         {
             if (id == null)
@@ -121,6 +128,7 @@ namespace HealthAdviceGroup.Controllers
         }
 
         // POST: Health/Edit/5
+        [Authorize]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Edit(int id, [Bind("Id,UserId,Steps,Calories,Water")] Health health)
@@ -157,6 +165,7 @@ namespace HealthAdviceGroup.Controllers
         }
 
         // GET: Health/Delete/5
+        [Authorize]
         public async Task<IActionResult> Delete(int? id)
         {
             if (id == null)
@@ -179,6 +188,7 @@ namespace HealthAdviceGroup.Controllers
         }
 
         // POST: Health/Delete/5
+        [Authorize]
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteConfirmed(int id)
