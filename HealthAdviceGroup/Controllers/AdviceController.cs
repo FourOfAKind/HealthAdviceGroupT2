@@ -230,7 +230,10 @@ namespace HealthAdviceGroup.Controllers
         {
             // Remove advice from the user's saved advice list
             var id = int.Parse(collection["id"].ToString());
-            var save = await _context.Save.FindAsync(id);
+            var save = await _context.Save.Where(s => s.AdviceId == id)
+                .Where(s => s.UserId == User.FindFirstValue(ClaimTypes.NameIdentifier))
+                .FirstOrDefaultAsync();
+
             if (save != null)
             {
                 _context.Save.Remove(save);
