@@ -49,28 +49,6 @@ namespace HealthAdviceGroup.Controllers
             return View(entries);
         }
 
-        // GET: Health/Details/5
-        public async Task<IActionResult> Details(int? id)
-        {
-            if (id == null)
-            {
-                return NotFound();
-            }
-
-            // Retrieve health details for the specified ID
-            var health = await _context.Health
-                .FirstOrDefaultAsync(m => m.Id == id);
-
-            // If no health object found, return NotFound
-            if (health == null)
-            {
-                return NotFound();
-            }
-
-            // Return the health object to the view
-            return View(health);
-        }
-
         // GET: Health/Create
         public IActionResult Create()
         {
