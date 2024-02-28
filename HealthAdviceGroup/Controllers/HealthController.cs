@@ -86,7 +86,7 @@ namespace HealthAdviceGroup.Controllers
             }
 
             // Retrieve health details for editing
-            var health = await _context.Health.FindAsync(id);
+            Health health = await _context.Health.FindAsync(id);
 
             // If no health object found, return NotFound
             if (health == null)
@@ -95,18 +95,29 @@ namespace HealthAdviceGroup.Controllers
             }
 
             // Return the health object to the view for editing
+            ViewBag.UserId = health.UserId;
+            ViewBag.Date = health.Date;
             return View(health);
         }
 
         // POST: Health/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,UserId,Steps,Calories,Water")] Health health)
+        public async Task<IActionResult> Edit(int id, Health health)
         {
             // Validate and save edited health entry
             if (id != health.Id)
             {
                 return NotFound();
+            }
+
+            Console.WriteLine("_----------------------");
+            foreach (var modelState in ViewData.ModelState.Values)
+            {
+                foreach (ModelError error in modelState.Errors)
+                {
+                    Console.WriteLine(error.ErrorMessage);
+                }
             }
 
             if (ModelState.IsValid)

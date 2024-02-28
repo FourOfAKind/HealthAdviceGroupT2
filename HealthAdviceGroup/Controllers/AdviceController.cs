@@ -8,6 +8,7 @@ using Microsoft.EntityFrameworkCore;
 using HealthAdviceGroup.Data;
 using HealthAdviceGroup.Models;
 using System.Security.Claims;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 
 namespace HealthAdviceGroup.Controllers
 {
@@ -98,13 +99,19 @@ namespace HealthAdviceGroup.Controllers
         // GET: Advice/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
+            Console.WriteLine("----------------------1");
+            Console.WriteLine("----------------------1");
+            Console.WriteLine("----------------------1");
+            Console.WriteLine("----------------------1");
+            Console.WriteLine("----------------------1");
+            Console.WriteLine("----------------------1");
             if (id == null)
             {
                 return NotFound();
             }
 
             // Display the form for editing a specific advice entry
-            var advice = await _context.Advice.FindAsync(id);
+            Advice advice = await _context.Advice.FindAsync(id);
             if (advice == null)
             {
                 return NotFound();
@@ -115,7 +122,7 @@ namespace HealthAdviceGroup.Controllers
         // POST: Advice/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("ImagePath,Id,Title,Description")] Advice advice)
+        public async Task<IActionResult> Edit(int id, Advice advice)
         {
             if (id != advice.Id)
             {
