@@ -8,6 +8,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Text.Encodings.Web;
+using System.Text.RegularExpressions;
 using System.Threading;
 using System.Threading.Tasks;
 using HealthAdviceGroup.Areas.Identity.Data;
@@ -120,6 +121,12 @@ namespace HealthAdviceGroup.Areas.Identity.Pages.Account
         {
             returnUrl ??= Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+            // checks if there is an @ symbol, an @ symbol after, a period after the @ symbol, and at least 2 characters after the period
+            if (!Regex.IsMatch(Input.Email, @"\..{2,}$"))
+            {
+                ModelState.AddModelError("Input.Email", "Email must contain a period following the domain.");
+            }
+
             if (ModelState.IsValid)
             {
                 var user = CreateUser();
